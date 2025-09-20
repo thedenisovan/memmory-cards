@@ -1,2 +1,1 @@
-# memmory-cards
-My current ongoing project to sharpen my skills using react &amp; tailwind.
+Ongoing react project of memory cards to polish my react/tailwind skill.
