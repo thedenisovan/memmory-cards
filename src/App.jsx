@@ -1,15 +1,38 @@
+import { useState } from 'react';
+
 import Header from './components/Header';
 import CountryFlag from './components/FlagApi';
 
-function App() {
+export default function App() {
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
+  const [countryCodes, addCode] = useState([]);
+
+  function playGame(value, array) {
+    if (!value) return null;
+    // Check is country code value correct type if not return
+    const isCountryCode = array.some((code) => code === value);
+    if (!isCountryCode) return null;
+
+    const flagIsDuplicate = countryCodes.some((flag) => flag === value);
+    if (!flagIsDuplicate) {
+      addCode((prev) => [...prev, value]);
+      setScore(score + 1);
+      console.log(countryCodes);
+    } else if (flagIsDuplicate) {
+      addCode([]);
+      setScore(0);
+    }
+  }
+
   return (
     <div>
-      <Header />
-      <CountryFlag countryCode='RU' />
-      <CountryFlag countryCode='US' />
-      <CountryFlag countryCode='GB' />
+      <Header currScore={score} />
+      <CountryFlag
+        playGame={playGame}
+        currScore={score}
+        // highScore={highScore}
+      />
     </div>
   );
 }
-
-export default App;

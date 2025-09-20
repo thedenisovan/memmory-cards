@@ -1,43 +1,54 @@
 import { useState, useEffect } from 'react';
 
-export default function CountryFlag({ countryCode }) {
-  const [flag, setFlag] = useState(null);
+export default function CountryFlag({ playGame, currScore }) {
+  const countryCodes = ['LT', 'LV', 'ES', 'MX', 'RU', 'US', 'GR', 'GB', 'FR'];
+
   const [allFlags, setAllFlags] = useState([]);
 
-  // Fetch flag with given country code and set it inside current flag url state
+  // Fetch flags with given country codes and adds it to allFlag state
   useEffect(() => {
-    async function fetchFlag() {
-      try {
-        const response = await fetch(
-          `https://api.api-ninjas.com/v1/countryflag?country=${countryCode}`,
-          {
-            headers: {
-              'X-Api-Key': 's6x+NPhLcnIrBf/3qO5U7w==ojs2CSSWu64nj56J',
-            },
-          }
-        );
-        if (!response.ok) throw new Error('Failed to fetch flag');
-        const result = await response.json();
-        const newFlag = {
-          url: result.rectangle_image_url,
-          country: result.country,
-        };
-        setFlag(newFlag);
-        setAllFlags((prev) => [...prev, newFlag]);
-      } catch (error) {
-        console.log(error);
-      }
+    function fetchFlag() {
+      // iterate trough country codes array and fetch each flag based on code
+      setAllFlags([]);
+      countryCodes.map(async (code) => {
+        try {
+          const response = await fetch(
+            `https://api.api-ninjas.com/v1/countryflag?country=${code}`,
+            {
+              headers: {
+                'X-Api-Key': 's6x+NPhLcnIrBf/3qO5U7w==ojs2CSSWu64nj56J',
+              },
+            }
+          );
+          if (!response.ok) throw new Error('Failed to fetch flag');
+          const result = await response.json();
+          // Flag object to act as template for current flag
+          const newFlag = {
+            url: result.rectangle_image_url,
+            country: result.country,
+          };
+          setAllFlags((prev) => [...prev, newFlag]);
+        } catch (error) {
+          console.log(error);
+        }
+      });
     }
 
     return () => fetchFlag();
-  }, [countryCode]);
+  }, [currScore]);
 
   return (
     <div>
-      {flag ? (
+      {/* If flag state is empty display loading */}
+      {allFlags.length ? (
         <ul>
           {allFlags.map((flag) => (
-            <li key={flag.country}>
+            <li
+              key={flag.country}
+              onClick={() => {
+                playGame(flag.country, countryCodes);
+              }}
+            >
               <img
                 className='mx-4 mt-[4rem] border-1'
                 src={flag.url}
