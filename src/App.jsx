@@ -20,18 +20,23 @@ export default function App() {
       setScore(score + 1);
       console.log(countryCodes);
     } else if (flagIsDuplicate) {
+      checkForHighScore();
       addCode([]);
       setScore(0);
     }
   }
 
+  function checkForHighScore() {
+    if (score > highScore) setHighScore(score);
+  }
+
   return (
     <div>
-      <Header currScore={score} />
+      <Header currScore={score} highScore={highScore} />
       <CountryFlag
         playGame={playGame}
         currScore={score}
-        // highScore={highScore}
+        highScore={highScore}
       />
     </div>
   );
