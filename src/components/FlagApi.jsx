@@ -7,7 +7,7 @@ export default function CountryFlag({ playGame, currScore }) {
     'NG',
     'PK',
     'GB',
-    'CA',
+    'MX',
     'PH',
     'BR',
     'BD',

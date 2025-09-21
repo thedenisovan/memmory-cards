@@ -4,7 +4,7 @@ import Header from './components/Header';
 import CountryFlag from './components/FlagApi';
 
 export default function App() {
-  const [score, setScore] = useState(0); // Curr score
+  const [score, setScore] = useState(null); // Curr score
   const [highScore, setHighScore] = useState(0);
   const [countryCodes, addCode] = useState([]); // Curr selected country codes
 
@@ -33,6 +33,7 @@ export default function App() {
   return (
     <div>
       <Header currScore={score} highScore={highScore} />
+      <button onClick={() => setScore(0)}>Start GAme</button>
       <CountryFlag
         playGame={playGame}
         currScore={score}
