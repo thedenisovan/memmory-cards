@@ -32,8 +32,7 @@ export default function App() {
 
   return (
     <div>
-      <Header currScore={score} highScore={highScore} />
-      <button onClick={() => setScore(0)}>Start GAme</button>
+      <Header currScore={score} highScore={highScore} setScore={setScore} />
       <CountryFlag
         playGame={playGame}
         currScore={score}

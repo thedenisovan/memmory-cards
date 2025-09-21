@@ -56,7 +56,7 @@ export default function CountryFlag({ playGame, currScore }) {
   return (
     <div>
       {/* If flag state is empty display United Nation flag */}
-      {flagsIsSet ? (
+      {flagsIsSet && currScore !== null ? (
         <ul className='max-w-[1100px] md:grid md:grid-cols-2 lg:grid-cols-3 m-auto'>
           {allFlags.map((flag) => (
             <li
