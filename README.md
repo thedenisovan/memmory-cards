@@ -7,3 +7,6 @@
 - API Ninjas Flag API
 - Vite (for development and build tooling)
 - Cloudflare (for deployment)
+
+### 👁️ Preveiw
+[Memory card game](https://ed70f0d6.memmory-cards.pages.dev/)
