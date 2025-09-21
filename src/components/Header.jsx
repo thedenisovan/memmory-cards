@@ -1,8 +1,10 @@
 export default function Header({ currScore, highScore }) {
   return (
-    <header className='fixed h-[6vh] top-0 w-full flex flex-col items-end justify-center pr-[2rem] bg-blue-500 text-white font-medium'>
-      <p>Score: {currScore}</p>
-      <p>Highest Score: {highScore}</p>
+    <header className='w-full bg-blue-500 flex justify-center'>
+      <div className='w-[1100px] text-white font-medium pr-[2rem] flex flex-col items-end justify-center'>
+        <p>Score: {currScore}</p>
+        <p>Highest Score: {highScore}</p>
+      </div>
     </header>
   );
 }

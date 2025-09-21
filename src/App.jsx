@@ -4,9 +4,9 @@ import Header from './components/Header';
 import CountryFlag from './components/FlagApi';
 
 export default function App() {
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(0); // Curr score
   const [highScore, setHighScore] = useState(0);
-  const [countryCodes, addCode] = useState([]);
+  const [countryCodes, addCode] = useState([]); // Curr selected country codes
 
   function playGame(value, array) {
     if (!value) return null;
@@ -16,6 +16,7 @@ export default function App() {
 
     const flagIsDuplicate = countryCodes.some((flag) => flag === value);
     if (!flagIsDuplicate) {
+      // If flag is not duplicate add it to curr country code array
       addCode((prev) => [...prev, value]);
       setScore(score + 1);
     } else if (flagIsDuplicate) {

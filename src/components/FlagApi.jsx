@@ -2,16 +2,18 @@ import { useState, useEffect } from 'react';
 
 export default function CountryFlag({ playGame, currScore }) {
   const countryCodes = [
-    'LT',
-    'LV',
-    'ES',
-    'MX',
-    'RU',
+    'IN',
     'US',
-    'GR',
+    'NG',
+    'PK',
     'GB',
-    'FR',
-    'CZ',
+    'CA',
+    'PH',
+    'BR',
+    'BD',
+    'KE',
+    'LV',
+    'RU',
   ];
 
   const [flagsIsSet, setFlagState] = useState(false);
@@ -19,7 +21,7 @@ export default function CountryFlag({ playGame, currScore }) {
 
   // Fetch flags with given country codes and adds it to allFlag state
   useEffect(() => {
-    setFlagState(false);
+    setFlagState(false); // Set to false to display UN flags while fetching api data
     function fetchFlag() {
       // iterate trough country codes array and fetch each flag based on code
       setAllFlags([]);
@@ -65,7 +67,7 @@ export default function CountryFlag({ playGame, currScore }) {
               }}
             >
               <img
-                className='mx-4 mt-[4rem] border-1'
+                className='mx-4 mt-[2rem] border-1 hover:scale-[1.015] hover:shadow-2xl transition cursor-pointer '
                 src={
                   flag
                     ? flag.url
@@ -82,7 +84,7 @@ export default function CountryFlag({ playGame, currScore }) {
           {countryCodes.map((flag) => (
             <li key={flag} className='w-[300px] m-auto'>
               <img
-                className='mx-4 mt-[4rem] border-1'
+                className='mx-4 mt-[2rem] border-1'
                 src='https://api-ninjas-data.s3.us-west-2.amazonaws.com/flags/4x3/l29EOW4J/un.svg'
                 alt={`EU flag`}
               />
