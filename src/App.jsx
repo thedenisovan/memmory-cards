@@ -19,9 +19,9 @@ export default function App() {
       addCode((prev) => [...prev, value]);
       setScore(score + 1);
     } else if (flagIsDuplicate) {
-      checkForHighScore();
       addCode([]);
       setScore(0);
+      checkForHighScore();
     }
   }
 

@@ -53,11 +53,12 @@ export default function CountryFlag({ playGame, currScore }) {
 
   return (
     <div>
-      {/* If flag state is empty display loading */}
+      {/* If flag state is empty display United Nation flag */}
       {flagsIsSet ? (
-        <ul>
+        <ul className='max-w-[1100px] md:grid md:grid-cols-2 lg:grid-cols-3 m-auto'>
           {allFlags.map((flag) => (
             <li
+              className='w-[300px] m-auto'
               key={flag.country}
               onClick={() => {
                 playGame(flag.country, countryCodes);
@@ -65,7 +66,11 @@ export default function CountryFlag({ playGame, currScore }) {
             >
               <img
                 className='mx-4 mt-[4rem] border-1'
-                src={flag.url}
+                src={
+                  flag
+                    ? flag.url
+                    : 'https://api-ninjas-data.s3.us-west-2.amazonaws.com/flags/4x3/l29EOW4J/un.svg'
+                }
                 alt={`${flag.country} flag`}
               />
               <p className='text-center text-2xl font-bold'>{flag.country}</p>
@@ -73,9 +78,9 @@ export default function CountryFlag({ playGame, currScore }) {
           ))}
         </ul>
       ) : (
-        <ul>
+        <ul className='max-w-[1100px] md:grid md:grid-cols-2 lg:grid-cols-3 m-auto'>
           {countryCodes.map((flag) => (
-            <li key={flag}>
+            <li key={flag} className='w-[300px] m-auto'>
               <img
                 className='mx-4 mt-[4rem] border-1'
                 src='https://api-ninjas-data.s3.us-west-2.amazonaws.com/flags/4x3/l29EOW4J/un.svg'
