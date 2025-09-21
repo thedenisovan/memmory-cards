@@ -1,12 +1,25 @@
 import { useState, useEffect } from 'react';
 
 export default function CountryFlag({ playGame, currScore }) {
-  const countryCodes = ['LT', 'LV', 'ES', 'MX', 'RU', 'US', 'GR', 'GB', 'FR'];
+  const countryCodes = [
+    'LT',
+    'LV',
+    'ES',
+    'MX',
+    'RU',
+    'US',
+    'GR',
+    'GB',
+    'FR',
+    'CZ',
+  ];
 
+  const [flagsIsSet, setFlagState] = useState(false);
   const [allFlags, setAllFlags] = useState([]);
 
   // Fetch flags with given country codes and adds it to allFlag state
   useEffect(() => {
+    setFlagState(false);
     function fetchFlag() {
       // iterate trough country codes array and fetch each flag based on code
       setAllFlags([]);
@@ -16,7 +29,7 @@ export default function CountryFlag({ playGame, currScore }) {
             `https://api.api-ninjas.com/v1/countryflag?country=${code}`,
             {
               headers: {
-                'X-Api-Key': 's6x+NPhLcnIrBf/3qO5U7w==ojs2CSSWu64nj56J',
+                'X-Api-Key': '7kkUWrh067PfIrhU8q4IeQ==vUAqeS7YRVJ7Qs3W',
               },
             }
           );
@@ -28,6 +41,7 @@ export default function CountryFlag({ playGame, currScore }) {
             country: result.country,
           };
           setAllFlags((prev) => [...prev, newFlag]);
+          setFlagState(true);
         } catch (error) {
           console.log(error);
         }
@@ -40,7 +54,7 @@ export default function CountryFlag({ playGame, currScore }) {
   return (
     <div>
       {/* If flag state is empty display loading */}
-      {allFlags.length ? (
+      {flagsIsSet ? (
         <ul>
           {allFlags.map((flag) => (
             <li
@@ -59,7 +73,18 @@ export default function CountryFlag({ playGame, currScore }) {
           ))}
         </ul>
       ) : (
-        <p>Loading...</p>
+        <ul>
+          {countryCodes.map((flag) => (
+            <li key={flag}>
+              <img
+                className='mx-4 mt-[4rem] border-1'
+                src='https://api-ninjas-data.s3.us-west-2.amazonaws.com/flags/4x3/l29EOW4J/un.svg'
+                alt={`EU flag`}
+              />
+              <p className='text-center text-2xl font-bold'>{flag.country}</p>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );

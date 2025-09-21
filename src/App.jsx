@@ -18,7 +18,6 @@ export default function App() {
     if (!flagIsDuplicate) {
       addCode((prev) => [...prev, value]);
       setScore(score + 1);
-      console.log(countryCodes);
     } else if (flagIsDuplicate) {
       checkForHighScore();
       addCode([]);
