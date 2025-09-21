@@ -86,7 +86,7 @@ export default function CountryFlag({ playGame, currScore }) {
               <img
                 className='mx-4 mt-[2rem] border-1'
                 src='https://api-ninjas-data.s3.us-west-2.amazonaws.com/flags/4x3/l29EOW4J/un.svg'
-                alt={`EU flag`}
+                alt={`EU flag `}
               />
               <p className='text-center text-2xl font-bold'>{flag.country}</p>
             </li>
